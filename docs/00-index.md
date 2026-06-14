@@ -12,6 +12,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[01-daily-log/day-03-minimal-kernel-structure]]
 - [[01-daily-log/day-04-linker-build-plan]]
 - [[01-daily-log/day-05-first-linker-script-makefile]]
+- [[01-daily-log/day-06-inspecting-kernel-elf]]
 
 ## Concepts
 
@@ -23,6 +24,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[02-concepts/qemu]]
 - [[02-concepts/linker]]
 - [[02-concepts/build-system]]
+- [[02-concepts/elf]]
 
 ## Design
 
@@ -32,6 +34,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[03-design/minimal-kernel-structure]]
 - [[03-design/linker-build-plan]]
 - [[03-design/build-system-design]]
+- [[03-design/kernel-elf-inspection]]
 
 ## Visual Notes
 
@@ -40,8 +43,17 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[04-xournal/diagrams/day-03-minimal-kernel-structure]]
 - [[04-xournal/diagrams/day-04-linker-build-plan]]
 - [[04-xournal/diagrams/day-05-linker-makefile-flow]]
+- [[04-xournal/diagrams/day-06-kernel-elf-inspection]]
 - [[04-xournal/examples/day-04-build-pipeline-example]]
 - [[04-xournal/notes/day-04-linker-notes]]
+
+## Build Reports
+
+- [[06-build-reports/day-06-file-kernel-elf]]
+- [[06-build-reports/day-06-readelf-header]]
+- [[06-build-reports/day-06-readelf-sections]]
+- [[06-build-reports/day-06-symbols]]
+- [[06-build-reports/day-06-disassembly]]
 
 ## References
 

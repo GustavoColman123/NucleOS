@@ -13,6 +13,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[01-daily-log/day-04-linker-build-plan]]
 - [[01-daily-log/day-05-first-linker-script-makefile]]
 - [[01-daily-log/day-06-inspecting-kernel-elf]]
+- [[01-daily-log/day-07-limine-iso-structure]]
 
 ## Concepts
 
@@ -25,6 +26,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[02-concepts/linker]]
 - [[02-concepts/build-system]]
 - [[02-concepts/elf]]
+- [[02-concepts/bootable-iso]]
 
 ## Design
 
@@ -35,6 +37,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[03-design/linker-build-plan]]
 - [[03-design/build-system-design]]
 - [[03-design/kernel-elf-inspection]]
+- [[03-design/limine-iso-structure]]
 
 ## Visual Notes
 
@@ -44,8 +47,15 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[04-xournal/diagrams/day-04-linker-build-plan]]
 - [[04-xournal/diagrams/day-05-linker-makefile-flow]]
 - [[04-xournal/diagrams/day-06-kernel-elf-inspection]]
+- [[04-xournal/diagrams/day-07-limine-iso-structure]]
+
 - [[04-xournal/examples/day-04-build-pipeline-example]]
+- [[04-xournal/examples/day-07-iso-layout-example]]
+
 - [[04-xournal/notes/day-04-linker-notes]]
+- [[04-xournal/notes/day-07-limine-notes]]
+
+- [[04-xournal/sketches/day-07-boot-flow-sketch]]
 
 ## Build Reports
 

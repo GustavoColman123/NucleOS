@@ -10,6 +10,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[01-daily-log/day-01-boot-process]]
 - [[01-daily-log/day-02-limine-qemu-boot-plan]]
 - [[01-daily-log/day-03-minimal-kernel-structure]]
+- [[01-daily-log/day-04-linker-build-plan]]
 
 ## Concepts
 
@@ -19,6 +20,8 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[02-concepts/interrupts]]
 - [[02-concepts/limine]]
 - [[02-concepts/qemu]]
+- [[02-concepts/linker]]
+- [[02-concepts/build-system]]
 
 ## Design
 
@@ -26,12 +29,16 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[03-design/roadmap]]
 - [[03-design/first-boot-plan]]
 - [[03-design/minimal-kernel-structure]]
+- [[03-design/linker-build-plan]]
 
 ## Visual Notes
 
 - [[04-xournal/diagrams/day-01-boot-process-diagram]]
 - [[04-xournal/diagrams/day-02-limine-qemu-boot-plan]]
 - [[04-xournal/diagrams/day-03-minimal-kernel-structure]]
+- [[04-xournal/diagrams/day-04-linker-build-plan]]
+- [[04-xournal/examples/day-04-build-pipeline-example]]
+- [[04-xournal/notes/day-04-linker-notes]]
 
 ## References
 

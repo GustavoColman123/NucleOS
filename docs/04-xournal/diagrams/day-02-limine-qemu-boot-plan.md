@@ -29,3 +29,9 @@ The kernel becomes NucleOS.
 ## Goal
 
 Make the first boot plan visually clear.
+
+## Readable Export
+
+PDF version:
+
+../exported-pdfs/diagrams/day-02-limine-qemu-boot-plan.pdf

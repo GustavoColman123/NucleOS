@@ -25,3 +25,9 @@ Welcome to NucleOS
 This diagram should explain the path from turning on the computer to reaching the NucleOS kernel.
 
 The goal is to make the boot process visually clear.
+
+## Readable Export
+
+PDF version:
+
+../exported-pdfs/diagrams/day-01-boot-process.pdf

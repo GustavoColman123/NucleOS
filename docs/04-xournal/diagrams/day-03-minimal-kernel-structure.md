@@ -43,3 +43,9 @@ This visual page should explain that NucleOS now has its first source code struc
 The project still does not boot yet.
 
 The purpose of this day is organization.
+
+## Readable Export
+
+PDF version:
+
+../exported-pdfs/diagrams/day-03-minimal-kernel-structure.pdf

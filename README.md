@@ -45,11 +45,7 @@ NucleOS/
 
 Small technical progress + clear documentation.
 
-NucleOS is part of a larger learning path:
-
-- Formosa Core: understanding CPU architecture.
-- NucleOS: understanding operating systems.
-- LUMI: applying software to real hardware.
+NucleOS is part of a larger learning path
 
 Together, these projects aim to build a full understanding of computing from hardware to software.
 

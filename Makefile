@@ -1,15 +1,14 @@
 CC := gcc
 LD := ld
+XORRISO := xorriso
+LIMINE := ./tools/limine/limine
 
 CFLAGS := -ffreestanding -fno-stack-protector -fno-pic -m64 -Wall -Wextra -O2
 LDFLAGS := -nostdlib -T linker.ld
 
 BUILD_DIR := build
 ISO_ROOT := iso_root
-
-KERNEL_SOURCES := \
-	src/kernel/kernel.c \
-	src/arch/x86_64/boot_entry.c
+ISO := $(BUILD_DIR)/nucleos.iso
 
 KERNEL_OBJECTS := \
 	$(BUILD_DIR)/kernel.o \
@@ -17,7 +16,7 @@ KERNEL_OBJECTS := \
 
 KERNEL_ELF := $(BUILD_DIR)/kernel.elf
 
-.PHONY: all clean iso-root
+.PHONY: all clean iso-root iso
 
 all: $(KERNEL_ELF)
 
@@ -34,11 +33,33 @@ $(KERNEL_ELF): $(KERNEL_OBJECTS) linker.ld
 	$(LD) $(LDFLAGS) $(KERNEL_OBJECTS) -o $(KERNEL_ELF)
 
 iso-root: $(KERNEL_ELF)
-	mkdir -p $(ISO_ROOT)/boot
+	mkdir -p $(ISO_ROOT)/boot/limine
+	mkdir -p $(ISO_ROOT)/EFI/BOOT
 	cp $(KERNEL_ELF) $(ISO_ROOT)/boot/kernel.elf
 	cp boot/limine.conf $(ISO_ROOT)/limine.conf
+	cp tools/limine/limine-bios.sys $(ISO_ROOT)/boot/limine/
+	cp tools/limine/limine-bios-cd.bin $(ISO_ROOT)/boot/limine/
+	cp tools/limine/limine-uefi-cd.bin $(ISO_ROOT)/boot/limine/
+	cp tools/limine/BOOTX64.EFI $(ISO_ROOT)/EFI/BOOT/
+	cp tools/limine/BOOTIA32.EFI $(ISO_ROOT)/EFI/BOOT/
+
+iso: iso-root
+	$(XORRISO) -as mkisofs \
+		-b boot/limine/limine-bios-cd.bin \
+		-no-emul-boot \
+		-boot-load-size 4 \
+		-boot-info-table \
+		--efi-boot boot/limine/limine-uefi-cd.bin \
+		-efi-boot-part \
+		--efi-boot-image \
+		--protective-msdos-label \
+		$(ISO_ROOT) \
+		-o $(ISO)
+	$(LIMINE) bios-install $(ISO)
 
 clean:
 	rm -rf $(BUILD_DIR)
 	rm -f $(ISO_ROOT)/boot/kernel.elf
 	rm -f $(ISO_ROOT)/limine.conf
+	rm -rf $(ISO_ROOT)/boot/limine
+	rm -rf $(ISO_ROOT)/EFI

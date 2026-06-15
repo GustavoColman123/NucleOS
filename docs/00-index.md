@@ -15,6 +15,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[01-daily-log/day-06-inspecting-kernel-elf]]
 - [[01-daily-log/day-07-limine-iso-structure]]
 - [[01-daily-log/day-08-integrating-limine]]
+- [[01-daily-log/day-09-first-bootable-iso]]
 
 ## Concepts
 
@@ -29,6 +30,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[02-concepts/elf]]
 - [[02-concepts/bootable-iso]]
 - [[02-concepts/limine-files]]
+- [[02-concepts/xorriso]]
 
 ## Design
 
@@ -41,6 +43,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[03-design/kernel-elf-inspection]]
 - [[03-design/limine-iso-structure]]
 - [[03-design/limine-integration]]
+- [[03-design/first-bootable-iso]]
 
 ## Visual Notes
 
@@ -52,14 +55,17 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 - [[04-xournal/diagrams/day-06-kernel-elf-inspection]]
 - [[04-xournal/diagrams/day-07-limine-iso-structure]]
 - [[04-xournal/diagrams/day-08-limine-integration]]
+- [[04-xournal/diagrams/day-09-first-bootable-iso]]
 
 - [[04-xournal/examples/day-04-build-pipeline-example]]
 - [[04-xournal/examples/day-07-iso-layout-example]]
 - [[04-xournal/examples/day-08-limine-files-example]]
+- [[04-xournal/examples/day-09-iso-build-example]]
 
 - [[04-xournal/notes/day-04-linker-notes]]
 - [[04-xournal/notes/day-07-limine-notes]]
 - [[04-xournal/notes/day-08-limine-integration-notes]]
+- [[04-xournal/notes/day-09-iso-notes]]
 
 - [[04-xournal/sketches/day-07-boot-flow-sketch]]
 

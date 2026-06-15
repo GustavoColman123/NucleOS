@@ -25,3 +25,6 @@ Thumbs.db
 
 # Xournal++ autosave files
 *.autosave.xopp
+
+# Downloaded external tools
+tools/downloads/

@@ -2,9 +2,10 @@ CC := gcc
 LD := ld
 XORRISO := xorriso
 LIMINE := ./tools/limine/limine
+QEMU := qemu-system-x86_64
 
-CFLAGS := -ffreestanding -fno-stack-protector -fno-pic -m64 -Wall -Wextra -O2
-LDFLAGS := -nostdlib -T linker.ld
+CFLAGS := -ffreestanding -fno-stack-protector -fno-pic -m64 -mcmodel=kernel -mno-red-zone -Wall -Wextra -O2
+LDFLAGS := -nostdlib -T linker.ld -z max-page-size=0x1000
 
 BUILD_DIR := build
 ISO_ROOT := iso_root
@@ -16,7 +17,7 @@ KERNEL_OBJECTS := \
 
 KERNEL_ELF := $(BUILD_DIR)/kernel.elf
 
-.PHONY: all clean iso-root iso
+.PHONY: all clean iso-root iso run
 
 all: $(KERNEL_ELF)
 
@@ -56,6 +57,9 @@ iso: iso-root
 		$(ISO_ROOT) \
 		-o $(ISO)
 	$(LIMINE) bios-install $(ISO)
+
+run: iso
+	$(QEMU) -cdrom $(ISO)
 
 clean:
 	rm -rf $(BUILD_DIR)

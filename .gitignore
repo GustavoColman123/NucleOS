@@ -28,3 +28,6 @@ Thumbs.db
 
 # Downloaded external tools
 tools/downloads/
+
+# Generated ISO root
+iso_root/

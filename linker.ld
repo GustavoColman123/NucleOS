@@ -30,6 +30,10 @@ SECTIONS
     .data : {
         *(.data)
         *(.data.*)
+
+        KEEP(*(.limine_requests_start_marker))
+        KEEP(*(.limine_requests))
+        KEEP(*(.limine_requests_end_marker))
     } :data
 
     .bss : {
@@ -37,4 +41,9 @@ SECTIONS
         *(.bss)
         *(.bss.*)
     } :data
+
+    /DISCARD/ : {
+        *(.eh_frame*)
+        *(.note .note.*)
+    }
 }

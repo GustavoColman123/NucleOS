@@ -1,28 +1,39 @@
 #include "kernel.h"
+#include "terminal.h"
 
-void kernel_main(void)
+static void debug_putc(char c)
 {
-    /*
-     * This is the main entry point for the generic NucleOS kernel.
-     *
-     * In the future, this function will initialize:
-     *
-     * - screen output
-     * - memory management
-     * - interrupts
-     * - keyboard input
-     * - kernel services
-     *
-     * For now, it only stays alive forever.
-     */
+    __asm__ volatile ("outb %0, $0xe9" : : "a"(c));
+}
+
+static void debug_write(const char *text)
+{
+    while (*text)
+    {
+        debug_putc(*text);
+        text++;
+    }
+}
+
+static void halt_forever(void)
+{
+    debug_write("[HALT]\n");
 
     while (1)
     {
-        /*
-         * Infinite loop.
-         *
-         * A real kernel cannot simply return to a host operating system.
-         * Once the kernel is running, it owns the machine.
-         */
+        __asm__ volatile ("hlt");
     }
+}
+
+void kernel_main(void)
+{
+    debug_write("[KERNEL_MAIN_ENTERED]\n");
+
+    terminal_init();
+    debug_write("[TERMINAL_INIT_DONE]\n");
+
+    terminal_write("WELCOME TO NUCLEOS");
+    debug_write("[TERMINAL_WRITE_DONE]\n");
+
+    halt_forever();
 }

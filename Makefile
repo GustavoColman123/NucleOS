@@ -4,7 +4,7 @@ XORRISO := xorriso
 LIMINE := ./tools/limine/limine
 QEMU := qemu-system-x86_64
 
-CFLAGS := -ffreestanding -fno-stack-protector -fno-pic -m64 -mcmodel=kernel -mno-red-zone -Wall -Wextra -O2
+CFLAGS := -ffreestanding -fno-stack-protector -fno-pic -m64 -mcmodel=kernel -mno-red-zone -Wall -Wextra -O2 -Isrc
 LDFLAGS := -nostdlib -T linker.ld -z max-page-size=0x1000
 
 BUILD_DIR := build
@@ -13,6 +13,7 @@ ISO := $(BUILD_DIR)/nucleos.iso
 
 KERNEL_OBJECTS := \
 	$(BUILD_DIR)/kernel.o \
+	$(BUILD_DIR)/terminal.o \
 	$(BUILD_DIR)/boot_entry.o
 
 KERNEL_ELF := $(BUILD_DIR)/kernel.elf
@@ -24,8 +25,11 @@ all: $(KERNEL_ELF)
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-$(BUILD_DIR)/kernel.o: src/kernel/kernel.c src/kernel/kernel.h | $(BUILD_DIR)
+$(BUILD_DIR)/kernel.o: src/kernel/kernel.c src/kernel/kernel.h src/kernel/terminal.h src/limine.h | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c src/kernel/kernel.c -o $(BUILD_DIR)/kernel.o
+
+$(BUILD_DIR)/terminal.o: src/kernel/terminal.c src/kernel/terminal.h src/limine.h | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c src/kernel/terminal.c -o $(BUILD_DIR)/terminal.o
 
 $(BUILD_DIR)/boot_entry.o: src/arch/x86_64/boot_entry.c src/kernel/kernel.h | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c src/arch/x86_64/boot_entry.c -o $(BUILD_DIR)/boot_entry.o
@@ -59,7 +63,9 @@ iso: iso-root
 	$(LIMINE) bios-install $(ISO)
 
 run: iso
-	$(QEMU) -cdrom $(ISO)
+	$(QEMU) -cdrom $(ISO) \
+		-debugcon file:$(BUILD_DIR)/e9.log \
+		-global isa-debugcon.iobase=0xe9
 
 clean:
 	rm -rf $(BUILD_DIR)

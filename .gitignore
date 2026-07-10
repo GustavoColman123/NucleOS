@@ -31,3 +31,7 @@ tools/downloads/
 
 # Generated ISO root
 iso_root/
+
+# Xournal++ autosave files
+*.autosave.xopp
+.*.autosave.xopp

@@ -81,6 +81,7 @@ This vault contains the learning notes, daily logs, technical concepts, diagrams
 
 - [[05-references/resources]]
 - [[05-references/day-11-sources]]
+- [[05-references/day-12-sources]]
 
 ## Project Rule
 

@@ -3,8 +3,9 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include "limine.h"
 
-void terminal_init(void);
+void terminal_init(struct limine_framebuffer *framebuffer);
 void terminal_write(const char *text);
 
 #endif

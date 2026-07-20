@@ -8,7 +8,7 @@ The goal is to learn operating system fundamentals through practice, documentati
 
 ## Current Status
 
-NucleOS currently reaches its first real boot path through QEMU and Limine.
+NucleOS now completes its first visible kernel-output path through QEMU and Limine.
 
 Current milestone:
 
@@ -21,15 +21,34 @@ NucleOS boot entry
 ↓
 kernel.elf
 ↓
-black screen
+kernel_main
+↓
+Limine framebuffer response
+↓
+terminal_init
+↓
+terminal_write
+↓
+WELCOME TO NUCLEOS
 ```
 
-The black screen is expected at this stage because the kernel does not have a text output system yet.
+The kernel successfully boots, confirms its execution through E9 debug output, receives a valid framebuffer from Limine, and renders its first visible message by writing pixels directly to framebuffer memory.
+
+Current capabilities:
+
+- Build an x86_64 kernel ELF file.
+- Generate a bootable ISO image.
+- Boot through Limine inside QEMU.
+- Reach `kernel_main` reliably.
+- Produce E9 debug output for execution tracing.
+- Request and validate a Limine framebuffer.
+- Render a limited set of text glyphs through a basic framebuffer terminal.
 
 Next goal:
 
 ```text
-Display "Welcome to NucleOS" from the kernel.
+Expand the framebuffer terminal with newlines, cursor movement,
+additional glyphs, numbers, punctuation, and improved debug output.
 ```
 
 ## Project Goals
@@ -195,11 +214,36 @@ Important results:
 - The NucleOS boot entry appeared.
 - Limine found `kernel.elf`.
 - The lower-half ELF issue was fixed.
-- The system now reaches a black screen after selecting NucleOS.
+- The system reached a black screen after selecting NucleOS.
 
-Current interpretation:
+At this stage, the black screen provided no direct evidence about how far the kernel had executed.
 
-The kernel is likely being loaded and entered, but it does not display anything yet because no text output system exists.
+### Day 11 — Confirming Kernel Execution
+
+Added E9 debug output and used QEMU's debug console to trace the kernel execution path.
+
+The debug log confirmed that:
+
+- `kernel_main` was reached.
+- The terminal code path executed.
+- The kernel reached its halt loop.
+- Limine was not returning a framebuffer response.
+
+This converted an unexplained black screen into a diagnosable framebuffer-request problem.
+
+### Day 12 — First Visible Kernel Output
+
+Corrected the Limine framebuffer request ID so it included the required common magic values.
+
+After the fix:
+
+- Limine recognized the framebuffer request.
+- The kernel received a valid framebuffer response.
+- The terminal initialized with the framebuffer.
+- Pixel-based glyph rendering worked.
+- QEMU displayed `WELCOME TO NUCLEOS`.
+
+This was the first visible proof produced directly by the NucleOS kernel.
 
 ## Documentation Workflow
 

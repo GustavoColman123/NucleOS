@@ -4,6 +4,8 @@ dist/
 *.o
 *.elf
 *.bin
+!tools/limine/limine-bios-cd.bin
+!tools/limine/limine-uefi-cd.bin
 *.iso
 *.img
 

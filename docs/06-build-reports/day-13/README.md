@@ -40,5 +40,33 @@ reported as a warning-free run of every tool.
 QEMU is bounded by `timeout 15s`; status 124 records planned termination.
 The complete E9 sequence supplies boot-path evidence. After these tests, the
 user confirmed on October 31, 2026 that QEMU displayed `WELCOME TO NUCLEOS`.
-This is a user report, not an agent visual inspection or screenshot. No UEFI or
-committed clean-clone test is claimed.
+This initial confirmation was a user report, not an agent visual inspection or
+screenshot. The candidate-source runs above do not test UEFI or a committed clean
+clone; the subsequent independent clean-clone evidence is recorded below.
+
+## Independent clean-clone audit and framebuffer evidence
+
+The user reported Claude Code's final audit as approved with observations:
+a clean clone of commit `e8627b5a0aba35426cba221715df46a248e9986b` built
+without warnings, generated the ISO, booted in BIOS QEMU and emitted all seven
+E9 markers. This is a separate audit from the candidate-source tests above.
+
+The surviving audit directory `day13-clean-clone/` contains `repo/` at exactly
+that commit with a clean Git status, and `logs/`. Its `make.err` is empty;
+`e9-screen.log` contains all seven expected markers. The monitor transcript
+`qemu-screen.out` records `screendump .../logs/screen.png -f png` followed by
+`quit`. The original PNG was copied byte for byte into this report; no image
+editing or generation was performed. The agent inspected the PNG and observed
+`WELCOME TO NUCLEOS`. The clean-clone execution was performed by Claude Code,
+not rerun by this agent during publication preparation.
+
+![QEMU framebuffer from the clean-clone ISO](qemu-framebuffer.png)
+
+Capture: real QEMU framebuffer screendump, PNG RGB, 1280 × 800, from the ISO
+built in that clean clone on October 31, 2026. Source: the audit's
+`day13-clean-clone/logs/screen.png`.
+
+SHA-256: `72f2e63e19cdf645dffe2b8d2819a644940ee22d8362f625bf4552cac2a4ff8b`.
+
+UEFI boot, byte-for-byte reproducible ISO output and authenticity of the original
+Limine archive remain unverified. This capture does not establish those claims.

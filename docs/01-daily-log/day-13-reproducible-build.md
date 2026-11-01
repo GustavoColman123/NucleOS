@@ -115,8 +115,8 @@ confirmation. The user subsequently supplied that confirmation, as recorded belo
 
 The isolated candidate build demonstrates independence from the ignored local
 inputs excluded above. It is not a fresh clone of a committed Day 13 revision:
-the tests preceded the authorized local Day 13 commit. A clean checkout of that
-commit has not been tested. UEFI boot and byte-for-byte ISO reproducibility were
+the tests preceded the authorized local Day 13 commit. At that stage a clean
+checkout of the commit had not been tested; see the subsequent audit below. UEFI boot and byte-for-byte ISO reproducibility were
 not tested. The bundled host utility is specific to Linux x86_64; the original
 archive's authenticity was not independently verified.
 
@@ -125,8 +125,19 @@ archive's authenticity was not independently verified.
 On October 31, 2026, the user confirmed that QEMU displayed
 `WELCOME TO NUCLEOS`. This records the user's observation; it is not a screenshot
 or visual inspection performed by the agent. The user authorized the local
-commit `Make NucleOS build reproducible (Day 13)`. No push or merge is authorized.
+commit `Make NucleOS build reproducible (Day 13)`. At that stage no push or merge
+was authorized.
 
-UEFI boot, a clean checkout of the committed revision, byte-for-byte ISO
-reproducibility and the original Limine archive's authenticity remain unverified.
-Do not publish yet.
+A subsequent independent audit by Claude Code, reported by the user, tested a
+clean clone of commit `e8627b5a0aba35426cba221715df46a248e9986b`: compilation
+without warnings, ISO creation, BIOS QEMU boot and all seven E9 markers passed.
+The surviving clone is clean and points to that commit. A real QEMU `screendump`
+PNG from its logs is preserved with its hash in the
+[verification report](../06-build-reports/day-13/README.md#independent-clean-clone-audit-and-framebuffer-evidence).
+The agent inspected the saved image; it displays `WELCOME TO NUCLEOS`.
+This is additional evidence from Claude Code's run, not a new execution by this
+agent. The user subsequently authorized publication of the branch and a PR,
+without merging or modifying main.
+
+UEFI boot, byte-for-byte ISO reproducibility and the original Limine archive's
+authenticity remain unverified.

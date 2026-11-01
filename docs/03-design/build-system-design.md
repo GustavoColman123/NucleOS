@@ -1,5 +1,9 @@
 # Build System Design
 
+> Historical design snapshot. Statements about current status and next steps
+> describe the original milestone, not Day 13. For the current build and boot
+> workflow, see [setup](../setup.md). Day 12 achieved visible framebuffer text.
+
 ## Objective
 
 Define the first build system for NucleOS.

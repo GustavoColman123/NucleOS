@@ -1,0 +1,21 @@
+mkdir -p output/iso_root/boot/limine
+mkdir -p output/iso_root/EFI/BOOT
+cp output/kernel.elf output/iso_root/boot/kernel.elf
+cp boot/limine.conf output/iso_root/limine.conf
+cp tools/limine/limine-bios.sys output/iso_root/boot/limine/
+cp tools/limine/limine-bios-cd.bin output/iso_root/boot/limine/
+cp tools/limine/limine-uefi-cd.bin output/iso_root/boot/limine/
+cp tools/limine/BOOTX64.EFI output/iso_root/EFI/BOOT/
+cp tools/limine/BOOTIA32.EFI output/iso_root/EFI/BOOT/
+xorriso -as mkisofs \
+	-b boot/limine/limine-bios-cd.bin \
+	-no-emul-boot \
+	-boot-load-size 4 \
+	-boot-info-table \
+	--efi-boot boot/limine/limine-uefi-cd.bin \
+	-efi-boot-part \
+	--efi-boot-image \
+	--protective-msdos-label \
+	output/iso_root \
+	-o output/nucleos.iso
+./tools/limine/limine bios-install output/nucleos.iso

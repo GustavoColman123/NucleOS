@@ -1,5 +1,9 @@
 # First QEMU Boot Attempt
 
+> Historical design snapshot. Statements about current status and next steps
+> describe the original milestone, not Day 13. For the current build and boot
+> workflow, see [setup](../setup.md). Day 12 achieved visible framebuffer text.
+
 ## Objective
 
 Document the first attempt to boot NucleOS inside QEMU.

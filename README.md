@@ -17,9 +17,9 @@ QEMU
 ↓
 Limine
 ↓
-NucleOS boot entry
-↓
 kernel.elf
+↓
+NucleOS boot entry (_start)
 ↓
 kernel_main
 ↓
@@ -83,26 +83,42 @@ additional glyphs, numbers, punctuation, and improved debug output.
 
 ```text
 NucleOS/
-├── boot/
-│   └── limine.conf
+├── boot/                         # repository inputs: limine.conf
 ├── docs/
+│   ├── 00-index.md
+│   ├── setup.md
 │   ├── 01-daily-log/
 │   ├── 02-concepts/
 │   ├── 03-design/
-│   ├── 04-xournal/
+│   ├── 04-xournal/               # sources and exported-pdfs/
+│   ├── 05-references/
 │   └── 06-build-reports/
-├── iso_root/
-├── scripts/
+├── scripts/                      # placeholder
 ├── src/
-│   ├── kernel/
-│   └── arch/
-│       └── x86_64/
+│   ├── limine.h
+│   ├── kernel/                   # kernel and framebuffer terminal
+│   └── arch/x86_64/              # boot_entry.c
 ├── tools/
-│   └── limine/
+│   ├── limine/                   # vendored 12.3.3 assets, license and hashes
+│   └── downloads/                # ignored local material; not required
+├── build/                        # generated, ignored
+├── iso_root/                     # generated, ignored
+├── .gitignore
+├── AGENTS.md
+├── LICENSE
 ├── Makefile
 ├── linker.ld
 └── README.md
 ```
+
+Except for the explicitly marked ignored directories, this tree describes the
+repository inputs included in the Day 13 baseline.
+`tools/downloads/limine-src/` is a local 12.4.0 source checkout; NucleOS uses
+the vendored 12.3.3 binaries and does not compile that checkout.
+
+
+See [setup and reproducible-build instructions](docs/setup.md) and the
+[vendored Limine version, hashes and license](tools/limine/README.md).
 
 ## Build Commands
 

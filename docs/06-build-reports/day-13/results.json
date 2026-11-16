@@ -1,0 +1,58 @@
+[
+  {
+    "step": "kernel",
+    "cwd": "build/day13-final-verification/source",
+    "command": [
+      "make",
+      "-B",
+      "all",
+      "BUILD_DIR=output",
+      "ISO_ROOT=output/iso_root"
+    ],
+    "exit_code": 0
+  },
+  {
+    "step": "iso",
+    "cwd": "build/day13-final-verification/source",
+    "command": [
+      "make",
+      "iso",
+      "BUILD_DIR=output",
+      "ISO_ROOT=output/iso_root"
+    ],
+    "exit_code": 0
+  },
+  {
+    "step": "readelf",
+    "cwd": "build/day13-final-verification/source",
+    "command": [
+      "readelf",
+      "-h",
+      "-l",
+      "output/kernel.elf"
+    ],
+    "exit_code": 0
+  },
+  {
+    "step": "qemu",
+    "cwd": "build/day13-final-verification/source",
+    "command": [
+      "timeout",
+      "15s",
+      "qemu-system-x86_64",
+      "-cdrom",
+      "output/nucleos.iso",
+      "-boot",
+      "d",
+      "-display",
+      "none",
+      "-no-reboot",
+      "-no-shutdown",
+      "-debugcon",
+      "file:output/e9.log",
+      "-global",
+      "isa-debugcon.iobase=0xe9"
+    ],
+    "exit_code": 124
+  }
+]

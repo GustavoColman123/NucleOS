@@ -1,0 +1,5 @@
+mkdir -p output
+gcc -ffreestanding -fno-stack-protector -fno-pic -m64 -mcmodel=kernel -mno-red-zone -Wall -Wextra -O2 -Isrc -c src/kernel/kernel.c -o output/kernel.o
+gcc -ffreestanding -fno-stack-protector -fno-pic -m64 -mcmodel=kernel -mno-red-zone -Wall -Wextra -O2 -Isrc -c src/kernel/terminal.c -o output/terminal.o
+gcc -ffreestanding -fno-stack-protector -fno-pic -m64 -mcmodel=kernel -mno-red-zone -Wall -Wextra -O2 -Isrc -c src/arch/x86_64/boot_entry.c -o output/boot_entry.o
+ld -nostdlib -T linker.ld -z max-page-size=0x1000 output/kernel.o output/terminal.o output/boot_entry.o -o output/kernel.elf
